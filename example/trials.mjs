@@ -176,3 +176,40 @@ const { class: ClicksCounter, template } = define({
         this.isLoaded;
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Component {
+    onCreate() {}
+    onLoad() {}
+}
+
+class CustomElement extends Component {
+
+}

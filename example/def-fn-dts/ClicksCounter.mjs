@@ -1,17 +1,17 @@
 import { define, HTML, CSS } from './index.mjs';
 import ClicksCounterData from './ClicksCounterData.mjs';
 
-const [ClicksCounter, { template }] = define({
+const ClicksCounter = define({
 	tag: 'clicks-counter',
 	data: ClicksCounterData,
 }, {
 	onCreate() {
 		this.isLoaded;
 	},
-	handleClick() {},
-});
-
-template.HTML = $ => HTML`
+	handleClick() {
+		//
+	},
+})($ => HTML`
 <div>
 	<p>Import: ${$.external}</p>
 	<p>Last clicked at: ${new Date($.clickedAt).toUTCString()}</p>
@@ -19,12 +19,10 @@ template.HTML = $ => HTML`
 		<span>Clicked ${$.clicksCount} times</span>
 	</button>
 <div>
-`
-
-template.CSS = $ => CSS`
+`)($ => CSS`
 button {
 	font-size: 14px;
 }
-`
+`);
 
 export default ClicksCounter;

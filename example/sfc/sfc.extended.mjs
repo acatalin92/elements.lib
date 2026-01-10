@@ -1,16 +1,16 @@
-import { define, attribute, unbound, on, html, css } from '../../index.mjs';
+import { define, attribute, on, HTML, CSS } from './lib/index.mjs';
 import { external } from '../external.mjs';
 
-const ClicksCounter = define({
+export default define({
 	tag: 'clicks-counter',
 	imports: { external },
 }, () => {
-	let start = attribute('start', Number);
+	let start = attribute('start', 0);
 	let clickedAt = attribute('clicked-at', Number);
-	let clicksCount = unbound(start);
+	let clicksCount = start;
 	let isLoaded = false;
 
-	function registerClick() {
+	function handleClick() {
 		clicksCount++;
 		clickedAt = Date.now();
 	}
@@ -19,28 +19,19 @@ const ClicksCounter = define({
 		isLoaded = true;
 	});
 
-	html`
+	HTML`
 	<div>
 		<p>Import: ${external}</p>
 		<p>Last clicked at: ${new Date(clickedAt).toUTCString()}</p>
 		<button onClick=${handleClick}>
 			<span>Clicked ${clicksCount} times</span>
 		</button>
-	<div>
+	</div>
 	`
 
-	function handleClick(event) {
-		animate(event);
-		registerClick();
-	}
-
-	function animate(event) {}
-
-	css`
+	CSS`
 	button {
 		font-size: 14px;
 	}
 	`
 });
-
-export default ClicksCounter;
